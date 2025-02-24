@@ -2,8 +2,8 @@
 
 MaBlog adalah sebuah website blog sederhana yang digunakan untuk mencatat dan berbagi pengetahuan tentang berbagai topik yang telah dipelajari. Aplikasi ini berfungsi sebagai dokumentasi pribadi sekaligus referensi bagi pengguna lain.
 
-## All about documentation, reprot, and assignment will be here
-[see here!](.doc_and_reports)
+## All about documentation, report, and assignment will be here
+[see here!](/doc_and_reports)
 
 ## Benefits
 - Belajar Blogging
