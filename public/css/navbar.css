@@ -1,0 +1,15 @@
+#hamburger.menu-open .top-line {
+    transform: rotate(-45deg) translateY(0);
+}
+#hamburger.menu-open .middle-line {
+    opacity: 0;
+}
+#hamburger.menu-open .bottom-line {
+    transform: rotate(45deg) translateY(0);
+}
+#hamburger .top-line {
+    transform: rotate(0deg) translateY(6px);
+}
+#hamburger .bottom-line {
+    transform: rotate(0deg) translateY(-6px);
+}
