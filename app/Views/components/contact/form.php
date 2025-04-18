@@ -1,4 +1,4 @@
-<form onSubmit={handleSubmit(onSubmit)}
+<form
     class="mt-12 text-base xs:text-lg sm:text-xl font-medium leading-relaxed font-in">
     Hello! My name is
     <input type="text" name="name" placeholder="your name" required maxlength="80" class="outline-none border-0 p-0 mx-2 focus:ring-0 placeholder:text-center placeholder:text-lg border-b border-gray 

@@ -16,7 +16,7 @@ $category = ($param!='') ? $param : 'all';
     class="grid  grid-cols-1 sm:grid-cols-2  lg:grid-cols-3 grid-rows-2 gap-16 mt-5 sm:mt-10 md:mt-24 sxl:mt-32 px-5 sm:px-10 md:px-24 sxl:px-32">
     <?php foreach ($data['articles'] as $article): ?>
       <article class="col-span-1 row-span-1 relative">
-        <?= view('layouts/blog/layout_three', ['imageSrc' => $article['image_src'], 'title' => $article['title'], 'categories' => $article['categories'], 'slug' => $article['slug'], 'publishedAt' => $article['published_at']]) ?>
+        <?= view('layouts/blog/layout_three', ['imageSrc' => $article['image_src'], 'title' => $article['title'], 'categories' => $article['categories'], 'slug' => $article['slug'], 'publishedAt' => $article['created_at']]) ?>
       </article>
     <?php endforeach; ?>
   </div>

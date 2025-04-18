@@ -2,82 +2,71 @@
 
 namespace App\Controllers;
 
+use App\Models\ArticleModel;
+use App\Models\CategoryModel;
+use CodeIgniter\Model;
+
+
 class Articles extends BaseController
 {
+    protected Model $articlesModel;
+    protected Model $categoriesModel;
+
+    // Constructor
+    public function __construct()
+    {
+        $this->articlesModel = new ArticleModel();
+        $this->categoriesModel = new CategoryModel();
+    }
+
     public function index(): string
     {
+        // Prepare data for the view
         $data['title'] = 'Articles | MaBlog';
         $data['content'] = 'pages/articles/articles';
         $data['description'] = 'All articles of MaBlog';
         $data['keywords'] = 'blog, articles, posts, news';
-        $sortedArticles = $this->articles;
+        
+        $data['articles'] = $this->articlesModel->getAllArticles();
+        $data['categories'] = $this->categoriesModel->getAllCategories();
 
-        usort($sortedArticles, function ($a, $b) {
-            return strtotime($b['published_at']) <=> strtotime($a['published_at']);
-        });
-
-        $featured = array_filter($this->articles, function ($article) {
-            return isset($article['is_featured']) && $article['is_featured'] === true;
-        });
-
-        $data['articles'] = $sortedArticles;
-        $data['categories'] = [
-            'all',
-            'Web Development',
-            'React',
-            'Next'
-        ];
         return view('layouts/main', ['data' => $data]);
     }
 
     public function category($param): string
     {
-        $category = unslugify($param);
         $data['title'] = 'Articles | MaBlog';
         $data['content'] = 'pages/articles/articles';
-        $data['description'] = 'All articles of MaBlog categorized by ' . unslugify($category);
+        $data['description'] = 'All articles of MaBlog categorized by ' . unslugify($param);
         $data['keywords'] = 'blog, articles, posts, news';
 
-        // Filter articles by category if category is not 'all'
-        if ($category === 'All') {
-            $articles = $this->articles;
-        } else {
-            $articles = array_filter($this->articles, function ($article) use ($category) {
-                return in_array($category, $article['categories']);
-            });
+        $data['articles'] = $this->articlesModel->getArticlesByCategory($param);
+        $data['categories'] = $this->categoriesModel->getAllCategories();
+        
+        if ($param == '' || $param == 'all') {
+            $data['articles'] = $this->articlesModel->getAllArticles();
         }
-
-        $data['articles'] = $articles;
-        $data['categories'] = [
-            'all',
-            'Web Development',
-            'React',
-            'Next'
-        ];
-        // return json_encode($data['articles']);
+        if ($param != '') {
+            array_unshift($data['categories'], ['name' => 'all', 'slug' => 'all']);
+        }
         return view('layouts/main', ['data' => $data]);
     }
 
     public function view($param): string
     {
-
         $data['title'] = 'Article | MaBlog';
         $data['content'] = 'pages/articles/article';
         $data['description'] = 'Article of MaBlog';
         $data['keywords'] = 'blog, articles, posts, news';
 
-        // Find the article by slug and insert into data
-        $article = array_filter($this->articles, function ($article) use ($param) {
-            return $article['slug'] === $param;
-        });
-        $article = array_values($article)[0] ?? null;
-        $toc_generate=generate_toc($article['body']);
-        
-        $data['article'] = $article;
-        $data['toc'] = $toc_generate['toc'];
-        $data['article']['body'] = $toc_generate['html'];
+        $article = $this->articlesModel->getArticleBySlug($param);
 
-        // return json_encode($data['toc']);
+        $toc_generate = generate_toc($article['body']);
+        $article['body'] = $toc_generate['html'];
+
+        $data['toc'] = $toc_generate['toc'];
+        $data['article'] = $article;
+
         return view('layouts/main', ['data' => $data]);
     }
 }

@@ -34,10 +34,10 @@
             <?= view('layouts/blog/layout_one', ['imageSrc' => $data['featuredArticles'][0]['image_src'], 'title' => $data['featuredArticles'][0]['title'], 'categories' => $data['featuredArticles'][0]['categories'], 'slug' => $data['featuredArticles'][0]['slug']]) ?>
         </article>
         <article class=" col-span-2 sm:col-span-1 row-span-1 relative">
-            <?= view('layouts/blog/layout_two', ['imageSrc' => $data['featuredArticles'][1]['image_src'], 'title' => $data['featuredArticles'][1]['title'], 'categories' => $data['featuredArticles'][1]['categories'], 'slug' => $data['featuredArticles'][1]['slug'],'publishedAt'=> $data['featuredArticles'][1]['published_at']]) ?>
+            <?= view('layouts/blog/layout_two', ['imageSrc' => $data['featuredArticles'][1]['image_src'], 'title' => $data['featuredArticles'][1]['title'], 'categories' => $data['featuredArticles'][1]['categories'], 'slug' => $data['featuredArticles'][1]['slug'],'publishedAt'=> $data['featuredArticles'][1]['created_at']]) ?>
         </article>
         <article class="col-span-2 sm:col-span-1 row-span-1 relative">
-            <?= view('layouts/blog/layout_two', ['imageSrc' => $data['featuredArticles'][2]['image_src'], 'title' => $data['featuredArticles'][2]['title'], 'categories' => $data['featuredArticles'][2]['categories'], 'slug' => $data['featuredArticles'][2]['slug'],'publishedAt'=> $data['featuredArticles'][2]['published_at']]) ?>
+            <?= view('layouts/blog/layout_two', ['imageSrc' => $data['featuredArticles'][2]['image_src'], 'title' => $data['featuredArticles'][2]['title'], 'categories' => $data['featuredArticles'][2]['categories'], 'slug' => $data['featuredArticles'][2]['slug'],'publishedAt'=> $data['featuredArticles'][2]['created_at']]) ?>
         </article>
     </div>
 </section>
@@ -57,7 +57,7 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 grid-rows-2 gap-16 mt-16">
     <?php foreach ($data['articles'] as $article): ?>
         <article class="col-span-1 row-span-1 relative">
-            <?= view('layouts/blog/layout_three', ['imageSrc' => $article['image_src'], 'title' => $article['title'], 'categories' => $article['categories'], 'slug' => $article['slug'],'publishedAt'=> $article['published_at']]) ?>
+            <?= view('layouts/blog/layout_three', ['imageSrc' => $article['image_src'], 'title' => $article['title'], 'categories' => $article['categories'], 'slug' => $article['slug'],'publishedAt'=> $article['created_at']]) ?>
         </article>   
     <?php endforeach; ?> 
     </div>

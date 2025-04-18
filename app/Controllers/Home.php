@@ -1,33 +1,23 @@
 <?php
 
 namespace App\Controllers;
+use App\Models\ArticleModel;
 
 class Home extends BaseController
 {
     public function index(): string
     {
+        $articleModel = new ArticleModel();
 
         $data['title'] = 'MaBlog';
         $data['content'] = 'pages/home';
         $data['description'] = 'MaBlog is a simple blog application';
         $data['keywords'] = 'blog, articles, posts, news';
-
-        $sortedArticles = $this->articles;
-
-        usort($sortedArticles, function ($a, $b) {
-            return strtotime($b['published_at']) <=> strtotime($a['published_at']);
-        });
-
-        $featured = array_filter($this->articles, function ($article) {
-            return isset($article['is_featured']) && $article['is_featured'] === true;
-        });
         
-        $data['articles'] = $sortedArticles;
-        $data['lastArticle'] = end($this->articles);
-        $data['featuredArticles'] = array_slice($featured, 0, 4);
+        $data['articles'] = $articleModel->getAllArticles();
+        $data['lastArticle'] = $articleModel->getLastArticle();
+        $data['featuredArticles'] = $articleModel->getArticleIsFeatures();
 
-
-        // return json_encode($data['featuredArticles']);
         return view('layouts/main', ['data' => $data]);
     }
 }
