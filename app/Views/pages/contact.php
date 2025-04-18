@@ -2,9 +2,9 @@
 <section class="w-full flex flex-col items-center justify-between">
     <?= view('components/elements/roll') ?>
     <div
-        class="w-full h-auto md:h-[75vh] border-b-2 border-solid border-dark
-         flex  flex-col md:flex-row items-center justify-center text-dark">
-        <div class='w-full md:w-1/2 h-full border-r-2 border-solid border-dark flex justify-center'>
+        class="w-full h-auto md:h-[75vh] border-b-2 border-solid border-dark dark:border-light
+         flex  flex-col md:flex-row items-center justify-center text-dark dark:text-light">
+        <div class='w-full md:w-1/2 h-full border-r-2 border-solid border-dark dark:border-light flex justify-center'>
             <img src="<?= base_url('images/avatar-2.png') ?>" alt="lutfi"
                 class='w-4/5  xs:w-3/4 md:w-full h-full object-contain object-center' priority
                 sizes="(max-width: 768px) 100vw,(max-width: 1180px) 50vw, 50vw" />

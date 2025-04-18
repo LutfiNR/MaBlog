@@ -1,17 +1,17 @@
 <header class="w-full py-8 px-5 sm:px-10 flex items-center justify-between font-manrope">
-    <a href="/" class="flex items-center text-dark font-manrope ">
-        <span class="font-bold  text-lg md:text-xl">MaBlog</span>
+    <a href="/" class="flex items-center text-dark font-manrope dark:text-light">
+        <span class="font-bold dark:font-semibold text-lg md:text-xl">MaBlog</span>
     </a>
     <!-- Mobile Menu Button -->
     <button class="inline-block sm:hidden z-50" onclick="toggleMenu()" aria-label="Hamburger Menu">
         <div class="w-6 cursor-pointer transition-all ease duration-300">
             <div class="relative" id="hamburger">
                 <span
-                    class="absolute top-0 inline-block w-full h-0.5 bg-dark rounded transition-all ease duration-200 top-line">&nbsp;</span>
+                    class="absolute top-0 inline-block w-full h-0.5 bg-dark dark:bg-light rounded transition-all ease duration-200 top-line">&nbsp;</span>
                 <span
-                    class="absolute top-0 inline-block w-full h-0.5 bg-dark rounded transition-all ease duration-200 middle-line">&nbsp;</span>
+                    class="absolute top-0 inline-block w-full h-0.5 bg-dark dark:bg-light rounded transition-all ease duration-200 middle-line">&nbsp;</span>
                 <span
-                    class="absolute top-0 inline-block w-full h-0.5 bg-dark rounded transition-all ease duration-200 bottom-line">&nbsp;</span>
+                    class="absolute top-0 inline-block w-full h-0.5 bg-dark dark:bg-light rounded transition-all ease duration-200 bottom-line">&nbsp;</span>
             </div>
         </div>
     </button>
@@ -44,7 +44,7 @@
             class="inline-block w-6 h-6 mr-4" aria-label="Reach out to me via Instagram" target="_blank">
             <?= view('components/icons/instagram'); ?>
         </a>
-        <a href="https://github.com/LutfiNR" rel="noopener noreferrer" class="inline-block w-6 h-6 mr-4"
+        <a href="https://github.com/LutfiNR" rel="noopener noreferrer" class="inline-block w-6 h-6 mr-4 dark:fill-light"
             aria-label="Check my profile on Github" target="_blank">
             <?= view('components/icons/github'); ?>
         </a>

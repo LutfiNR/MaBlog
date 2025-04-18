@@ -5,9 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= isset($data['title']) ? htmlspecialchars($data['title']) : 'MaBlog'; ?></title>
-
-    <!-- Favicon -->
-    <link rel="shortcut icon" type="image/png" href="<?= base_url('/images/logo-upik.png'); ?>">
+        <!-- Favicon -->
+        <link rel="shortcut icon" type="image/png" href="<?= base_url('/images/logo-upik.png'); ?>">
 
     <!-- SEO Meta Tags -->
     <meta name="description"
@@ -22,6 +21,9 @@
         href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Manrope:wght@200..800&display=swap"
         rel="stylesheet">
 
+
+        <script src="https://kit.fontawesome.com/f0d8b8088c.js" crossorigin="anonymus"></script>
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -31,13 +33,6 @@
                     fontFamily: {
                         inter: ['Inter', 'sans-serif'],
                         manrope: ['Manrope', 'sans-serif'],
-                    },
-                    colors: {
-                        dark: "#1b1b1b",
-                        light: "#fff",
-                        accent: "#7B00D3",
-                        accentDark: "#ffdb4d",
-                        gray: "#747474",
                     },
                     animation: {
                         roll: "roll 24s linear infinite"
@@ -58,24 +53,18 @@
             }
         }
     </script>
-    <link rel="stylesheet" href="<?= base_url('css/navbar.css'); ?>">
 </head>
 
-<body class="font-inter bg-light dark:bg-dark text-gray-900 antialiased">
-    <!-- Navbar -->
-    <header>
-        <?= view('components/navbar/navbar'); ?>
-    </header>
+<body class="font-inter bg-white text-gray-900 h-screen overflow-hidden antialiased flex">
 
+    <!-- Sidebar -->
+     <?= view('components/admin/sidebar/sidebar'); ?>
+     
     <!-- Main Content -->
-    <main class="">
+    <main class="flex-auto overflow-y-auto bg-white dark:bg-gray-900">
+        <?= view('components/admin/breadchumbs'); ?>
         <?= isset($data['content']) ? view($data['content']) : ''; ?>
     </main>
-
-    <!-- Footer -->
-        <?=  view('components/footer/footer'); ?>
-
-    <script src="<?= base_url('js/navbar.js') ?>"></script>
 </body>
 
 </html>
