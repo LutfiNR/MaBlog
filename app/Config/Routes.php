@@ -19,17 +19,15 @@ $routes->get('/contact', 'Contact::index');
 $routes->get('/login', 'Login::index');
 $routes->post('/login', 'Login::login');
 $routes->get('/logout', 'Login::logout');
-
 $routes->addRedirect('/admin', '/admin/dashboard');
-$routes->get('/admin/dashboard', 'Admin::index');
-$routes->get('/admin/users', 'Admin::users');
 
-$routes->get('/admin/articles', 'Admin::articles');
-$routes->get('/admin/article/create', 'Admin::createarticle');
-$routes->get('/admin/article/edit', 'Admin::editarticle');
-$routes->get('/admin/article/delete', 'Admin::deletearticle');
+$routes->group('', ['filter' => 'authentication'], function($routes) {    
+    $routes->get('/admin/dashboard', 'Admin::index');
 
-$routes->get('/admin/categories', 'Admin::categories');
-
-
+    $routes->get('/admin/articles', 'Admin::articles');
+    $routes->get('/admin/article/create', 'Admin::createarticle');
+    $routes->get('/admin/article/edit', 'Admin::editarticle');
+    $routes->get('/admin/article/delete', 'Admin::deletearticle');
+    $routes->get('/admin/categories', 'Admin::categories');
+});
 

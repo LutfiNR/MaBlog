@@ -20,7 +20,7 @@
                 <p class="font-medium text-gray-500 uppercase dark:text-gray-300">Total Articles</p>
 
                 <h2 class="text-6xl font-semibold text-gray-800 uppercase dark:text-gray-100">
-                    $0
+                    <?= $data['total_articles'] ?>
                 </h2>
             </div>
         </div>

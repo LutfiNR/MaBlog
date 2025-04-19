@@ -1,66 +1,49 @@
 <?php
 namespace App\Controllers;
+use App\Models\ArticleModel;
+use App\Models\CategoryModel;
+use App\Models\UserModel;
+use CodeIgniter\Model;
 
 class Admin extends BaseController
 {
+    protected Model $articleModel;
+    protected Model $categoryModel;
+
+    protected Model $userModel;
+
+    public function __construct()
+    {
+        $this->articleModel = new ArticleModel();
+        $this->categoryModel = new CategoryModel();
+        $this->userModel = new UserModel();
+    }
     public function index(): string
     {
         $data['title'] = 'Admin | MaBlog';
         $data['content'] = 'pages/admin/dashboard';
         $data['description'] = 'Admin page for managing the blog.';
         $data['keywords'] = 'admin, blog, articles, posts, news';
-        $sortedArticles = $this->articles;
+        
+        //get user matching with session
+        $session = session();
+        $user = $this->userModel->getUserByUsername($session->get('username'));
+        $data['user'] = $user;
 
-        usort($sortedArticles, function ($a, $b) {
-            return strtotime($b['published_at']) <=> strtotime($a['published_at']);
-        });
+        //get total articles
+        $data['total_articles'] = $this->articleModel->countAll();
 
-        $data['articles'] = $sortedArticles;
-        $data['categories'] = [
-            'all',
-            'Web Development',
-            'React',
-            'Next'
-        ];
-        $data['user'] = [
-                'name'=>'Lutfi Nur Rohman',
-                'email' => 'lutfinurrohman5@gmail.com',
-                'image' => '/images/photo-upik.png',
-                'role' => 'admin',
-                'created_at' => '2023-10-01',
-                'updated_at' => '2023-10-01',
-        ];
-
+        //get toparticles
+        $data['top_articles'] = $this->articleModel->getAllArticles('desc', 6,'visited');
+    
         return view('layouts/admin/main', ['data' => $data], );
     }
-    public function users(): string
-    {
-        $data['title'] = 'Admin Users | MaBlog';
-        $data['content'] = 'pages/admin/users';
-        $data['description'] = 'Admin page for managing the blog.';
-        $data['keywords'] = 'admin, blog, articles, posts, news';
 
-        $data['user'] = [
-            'name'=>'Lutfi Nur Rohman',
-            'email' => 'lutfinurrohman5@gmail.com',
-            'image' => '/images/photo-upik.png',
-            'role' => 'admin',
-            'created_at' => '2023-10-01',
-            'updated_at' => '2023-10-01',
-    ];
-
-        return view('layouts/admin/main', ['data' => $data], );
-    }
     public function articles(): string
     {
-        $data['user'] = [
-            'name'=>'Lutfi Nur Rohman',
-            'email' => 'lutfinurrohman5@gmail.com',
-            'image' => '/images/photo-upik.png',
-            'role' => 'admin',
-            'created_at' => '2023-10-01',
-            'updated_at' => '2023-10-01',
-    ];
+        $session = session();
+        $user = $this->userModel->getUserByUsername($session->get('username'));
+        $data['user'] = $user;
         $data['title'] = 'Admin Articles | MaBlog';
         $data['content'] = 'pages/admin/articles';
         $data['description'] = 'Admin page for managing the blog.';
@@ -70,14 +53,9 @@ class Admin extends BaseController
     }
     public function categories(): string
     {
-        $data['user'] = [
-            'name'=>'Lutfi Nur Rohman',
-            'email' => 'lutfinurrohman5@gmail.com',
-            'image' => '/images/photo-upik.png',
-            'role' => 'admin',
-            'created_at' => '2023-10-01',
-            'updated_at' => '2023-10-01',
-    ];
+        $session = session();
+        $user = $this->userModel->getUserByUsername($session->get('username'));
+        $data['user'] = $user;
         $data['title'] = 'Admin Categories | MaBlog';
         $data['content'] = 'pages/admin/categories';
         $data['description'] = 'Admin page for managing the blog.';

@@ -43,4 +43,19 @@ class UserModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    //get model by username
+    public function getUserByUsername($username)
+    {
+        return $this->where('username', $username)->first();
+    }
+    //authenticate user
+    public function authenticate($username, $password)
+    {
+        $user = $this->getUserByUsername($username);
+        if ($user && password_verify($password, $user['password'])) {
+            return $user;
+        }
+        return false;
+    }
 }

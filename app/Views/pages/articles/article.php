@@ -27,7 +27,7 @@
         </div>
       </details>
     </div>
-    <div class='col-span-12  lg:col-span-8 font-in prose sm:prose-base md:prose-lg max-w-max text-dark dark:text-light
+    <content class='col-span-12  lg:col-span-8 font-in prose sm:prose-base md:prose-lg max-w-max text-dark dark:text-light
     prose-blockquote:bg-accent/20 
     prose-blockquote:p-2
     prose-blockquote:px-6
@@ -48,6 +48,6 @@
     first-letter:text-3xl
     sm:first-letter:text-5xl'>
       <?= $data['article']['body'] ?>
-    </div>
+    </content>
   </div>
 </article>

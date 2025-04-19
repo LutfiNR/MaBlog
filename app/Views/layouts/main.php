@@ -24,6 +24,7 @@
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -59,6 +60,7 @@
         }
     </script>
     <link rel="stylesheet" href="<?= base_url('css/navbar.css'); ?>">
+    <link rel="stylesheet" href="<?= base_url('css/global.css'); ?>">
 </head>
 
 <body class="font-inter bg-light dark:bg-dark text-gray-900 antialiased">

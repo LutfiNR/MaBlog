@@ -46,9 +46,10 @@ class ArticleModel extends Model
 
     private function baseArticleQuery()
     {
-        return $this->select('articles.*, GROUP_CONCAT(categories.name) as categories')
+        return $this->select('articles.*, GROUP_CONCAT(categories.name) as categories, users.name as author_name')
             ->join('article_categories', 'articles.id = article_categories.article_id', 'left')
             ->join('categories', 'article_categories.category_id = categories.id', 'left')
+            ->join('users', 'articles.author_id = users.id', 'left')
             ->groupBy('articles.id');
     }
 
@@ -62,10 +63,10 @@ class ArticleModel extends Model
         return $articles;
     }
 
-    public function getAllArticles($sort = 'asc', $limit = 10)
+    public function getAllArticles($sort = 'asc', $limit = 10, $orderBy = 'articles.created_at')
     {
         $articles = $this->baseArticleQuery()
-            ->orderBy('articles.created_at', $sort)
+            ->orderBy($orderBy, $sort)
             ->findAll($limit);
 
         return $this->formatArticlesCategories($articles);
@@ -110,9 +111,10 @@ class ArticleModel extends Model
     public function getArticlesByCategory($category)
     {
         $articles = $this->baseArticleQuery()
-        ->where('categories.slug', $category)
+        ->where('categories.name', $category)
         ->findAll();
 
         return $this->formatArticlesCategories($articles);
     }
+    
 }

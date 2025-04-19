@@ -29,6 +29,7 @@ class Articles extends BaseController
         
         $data['articles'] = $this->articlesModel->getAllArticles();
         $data['categories'] = $this->categoriesModel->getAllCategories();
+        array_unshift($data['categories'], ['name' => 'all', 'slug' => 'all']);
 
         return view('layouts/main', ['data' => $data]);
     }
