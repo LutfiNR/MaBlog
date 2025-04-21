@@ -48,4 +48,24 @@ class CategoryModel extends Model
     {
         return $this->findAll();
     }
+    //get category by id
+    public function getCategoryById(int $id): array
+    {
+        return $this->find($id) ?? [];
+    }
+    public function createCategory(array $data): bool
+    {
+        return $this->insert($data);
+    }
+    //update category
+    public function updateCategory(int $id, array $data): bool
+    {
+        return $this->update($id, $data);
+    }
+    //delete category
+
+    public function deleteCategory(int $id): bool
+    {
+        return $this->delete($id);
+    }
 }
