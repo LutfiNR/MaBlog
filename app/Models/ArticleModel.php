@@ -12,7 +12,7 @@ class ArticleModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['title', 'slug', 'content', 'isfeatured', 'created_at'];
+    protected $allowedFields    = ['title', 'description','body','reading_time','visited', 'slug', 'is_featured', 'created_at','updated_at','author_id','image_src'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
@@ -85,6 +85,20 @@ class ArticleModel extends Model
         return $article;
     }
 
+    //get article by id
+    public function getArticleById($id)
+    {
+        $article = $this->baseArticleQuery()
+            ->where('articles.id', $id)
+            ->first();
+
+        if ($article && isset($article['categories'])) {
+            $article['categories'] = explode(',', $article['categories']);
+        }
+
+        return $article;
+    }
+
     public function getArticleIsFeatures()
     {
         $articles = $this->baseArticleQuery()
@@ -115,6 +129,23 @@ class ArticleModel extends Model
         ->findAll();
 
         return $this->formatArticlesCategories($articles);
+    }
+
+    //add article
+    public function addArticle($data)
+    {
+        $this->insert($data);
+        return $this->insertID();
+    }
+
+    public function deleteArticle($id)
+    {
+        return $this->delete($id);
+
+    }
+    //update article
+    public function updateArticle($id, $data){
+        return $this->update($id, $data);
     }
     
 }

@@ -2,7 +2,6 @@
 // if segment 3 is create and segment 4 is empty
 $uri = service('uri');
 $formAction = $uri->getSegment(3) === 'create' ? '/admin/category/create' : '/admin/category/edit/' . $uri->getSegment(4);
-
 ?>
 
 <section class="mt-12 max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">

@@ -6,14 +6,14 @@
                 <p class="font-medium text-gray-500 uppercase dark:text-gray-300">Today Visitor</p>
 
                 <h2 class="text-6xl font-semibold text-gray-800 uppercase dark:text-gray-100">
-                    $0
+                    0
                 </h2>
             </div>
             <div class="w-full p-8 space-y-8 text-center border border-gray-200 rounded-lg dark:border-gray-700">
                 <p class="font-medium text-gray-500 uppercase dark:text-gray-300">All Visitor</p>
 
                 <h2 class="text-6xl font-semibold text-gray-800 uppercase dark:text-gray-100">
-                    $0
+                    0
                 </h2>
             </div>
             <div class="w-full p-8 space-y-8 text-center border border-gray-200 rounded-lg dark:border-gray-700">

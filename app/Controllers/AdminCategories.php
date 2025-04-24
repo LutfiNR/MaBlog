@@ -84,7 +84,6 @@ class AdminCategories extends BaseController
         //get data from form
         $data = [
             'name' => $this->request->getPost('name'),
-            // 'slug' => slugify($this->request->getPost('name')),
         ];
 
         //update category in model if true pass status success

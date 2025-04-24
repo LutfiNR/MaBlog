@@ -26,8 +26,10 @@ $routes->group('', ['filter' => 'authentication'], function($routes) {
 
     $routes->get('/admin/articles', 'AdminArticles::articles');
     $routes->get('/admin/article/create', 'AdminArticles::createarticle');
-    $routes->get('/admin/article/edit', 'AdminArticles::editarticle');
-    $routes->get('/admin/article/delete', 'AdminArticles::deletearticle');
+    $routes->post('/admin/article/create', 'AdminArticles::storearticle');
+    $routes->get('/admin/article/edit/(:num)', 'AdminArticles::editarticle/$1');
+    $routes->post('/admin/article/edit/(:num)', 'AdminArticles::updatearticle/$1');
+    $routes->get('/admin/article/delete/(:num)', 'AdminArticles::deletearticle/$1');
 
     $routes->get('/admin/categories', 'AdminCategories::categories');
     $routes->get('/admin/category/create/', 'AdminCategories::createcategory');
