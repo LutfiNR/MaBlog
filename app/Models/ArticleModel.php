@@ -44,6 +44,7 @@ class ArticleModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
+    // Base query for articles
     private function baseArticleQuery()
     {
         return $this->select('articles.*, GROUP_CONCAT(categories.name) as categories, users.name as author_name')
@@ -53,6 +54,7 @@ class ArticleModel extends Model
             ->groupBy('articles.id');
     }
 
+    //format articles categories
     private function formatArticlesCategories(array $articles)
     {
         foreach ($articles as &$article) {
@@ -63,6 +65,7 @@ class ArticleModel extends Model
         return $articles;
     }
 
+    //get all articles
     public function getAllArticles($sort = 'asc', $limit = 10, $orderBy = 'articles.created_at')
     {
         $articles = $this->baseArticleQuery()
@@ -72,6 +75,7 @@ class ArticleModel extends Model
         return $this->formatArticlesCategories($articles);
     }
 
+    //get article by slug
     public function getArticleBySlug($slug)
     {
         $article = $this->baseArticleQuery()
@@ -99,6 +103,7 @@ class ArticleModel extends Model
         return $article;
     }
 
+    //get artice featured
     public function getArticleIsFeatures()
     {
         $articles = $this->baseArticleQuery()
@@ -108,6 +113,7 @@ class ArticleModel extends Model
         return $this->formatArticlesCategories($articles);
     }
 
+    //get last article
     public function getLastArticle()
     {
         $article = $this->baseArticleQuery()
