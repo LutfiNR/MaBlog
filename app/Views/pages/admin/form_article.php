@@ -4,8 +4,8 @@ if (empty($data['article'])) {
     $data['article'] = [
         'title' => 'Insert your title here', // Default title
         'description' => 'Insert your description here', // Default description
-        'reading_time' => '0', // Default reading time
-        'is_featured' => '0', // Default 'is featured' status
+        'reading_time' => 0, // Default reading time
+        'is_featured' => 0, // Default 'is featured' status
         'image' => 'Insert your image link here', // Default image URL
         'body' => 'Insert your content here', // Default body content
         'categories' => [], // No categories selected by default
@@ -90,6 +90,9 @@ if (empty($data['article'])) {
                 <input id="is_featured" name="is_featured" type="checkbox" value="1"
                     <?= $data['article']['is_featured'] == 1 ? 'checked' : '' ?> class="mr-2">
                 <label for="is_featured" class="text-gray-700 dark:text-gray-200">Yes</label>
+                <input id="is_featured" name="is_featured" type="checkbox" value="0"
+                    <?= $data['article']['is_featured'] == 0 ? 'checked' : '' ?> class="mr-2">
+                <label for="is_featured" class="text-gray-700 dark:text-gray-200">No</label>
             </div>
             
             <!-- Body Content Editor (Rich Text Editor using Quill.js) -->
