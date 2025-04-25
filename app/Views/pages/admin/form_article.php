@@ -4,7 +4,7 @@ if (empty($data['article'])) {
     $data['article'] = [
         'title' => 'Insert your title here', // Default title
         'description' => 'Insert your description here', // Default description
-        'readingtime' => '0', // Default reading time
+        'reading_time' => '0', // Default reading time
         'is_featured' => '0', // Default 'is featured' status
         'image' => 'Insert your image link here', // Default image URL
         'body' => 'Insert your content here', // Default body content
